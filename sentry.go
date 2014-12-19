@@ -16,6 +16,7 @@
 package heka_mozsvc_plugins
 
 import (
+	"errors"
 	"fmt"
 	"github.com/getsentry/raven-go"
 	"github.com/mozilla-services/heka/pipeline"
@@ -84,9 +85,19 @@ func (so *SentryOutput) Run(or pipeline.OutputRunner, h pipeline.PluginHelper) (
 		client *raven.Client
 	)
 
+	if or.Encoder() == nil {
+		return errors.New("Encoder required.")
+	}
+
 	sentryMsg := &SentryMsg{}
 
 	for pack = range or.InChan() {
+		if _, e = or.Encode(pack); e != nil {
+			or.LogError(fmt.Errorf("Error encoding message: %s", e))
+			pack.Recycle()
+			continue
+		}
+
 		e = so.prepSentryMsg(pack, sentryMsg)
 		pack.Recycle()
 		if e != nil {
