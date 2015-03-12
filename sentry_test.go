@@ -51,6 +51,16 @@ func getSentryPackWithoutDsn() (pack *pipeline.PipelinePack) {
 	return
 }
 
+func getSentryPackWithoutDsn() (pack *pipeline.PipelinePack) {
+	recycleChan := make(chan *pipeline.PipelinePack, 1)
+	pack = pipeline.NewPipelinePack(recycleChan)
+	pack.Message.SetType("sentry")
+	pack.Message.SetPayload(PAYLOAD)
+	pack.Decoded = true
+	pack.Message.SetTimestamp(int64(EPOCH_TS * 1e9))
+	return
+}
+
 func SentryOutputSpec(c gs.Context) {
 
 	t := new(pipeline_ts.SimpleT)
