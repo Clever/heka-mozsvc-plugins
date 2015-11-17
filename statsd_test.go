@@ -18,7 +18,7 @@ package heka_mozsvc_plugins
 import (
 	"sync"
 
-	ts "github.com/mozilla-services/heka-mozsvc-plugins/testsupport"
+	ts "github.com/Clever/heka-mozsvc-plugins/testsupport"
 	"github.com/mozilla-services/heka/message"
 	pipeline "github.com/mozilla-services/heka/pipeline"
 	pipeline_ts "github.com/mozilla-services/heka/pipeline/testsupport"

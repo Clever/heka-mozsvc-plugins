@@ -21,7 +21,7 @@ import (
 	"strings"
 	"time"
 
-	ts "github.com/mozilla-services/heka-mozsvc-plugins/testsupport"
+	ts "github.com/Clever/heka-mozsvc-plugins/testsupport"
 	"github.com/mozilla-services/heka/message"
 	"github.com/mozilla-services/heka/pipeline"
 	pipeline_ts "github.com/mozilla-services/heka/pipeline/testsupport"
