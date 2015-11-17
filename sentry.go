@@ -78,7 +78,7 @@ func (so *SentryOutput) prepSentryMsg(pack *pipeline.PipelinePack,
 func (so *SentryOutput) getClient(dsn string) (client *raven.Client, err error) {
 	var ok bool
 	if client, ok = so.clientMap[dsn]; !ok {
-		client, err = raven.NewClient(dsn, nil)
+		client, err = raven.New(dsn)
 	}
 	return
 }
