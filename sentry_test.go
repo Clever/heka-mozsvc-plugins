@@ -80,7 +80,7 @@ func SentryOutputSpec(c gs.Context) {
 			c.Expect(err.Error(), gs.Equals, "`dsn` isn't a string")
 
 			_, err = output.getClient("http://localhost")
-			c.Expect(err.Error(), gs.Equals, "raven: dsn missing public key and/or private key")
+			c.Expect(err.Error(), gs.Equals, "raven: dsn missing public key and/or password")
 		})
 
 		c.Specify("calls CaptureMessage with the payload when it has a dsn", func() {
